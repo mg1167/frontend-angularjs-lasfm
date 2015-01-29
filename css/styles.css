@@ -1,0 +1,69 @@
+head{
+background-repeat:no-repeat;
+}
+body{
+	background-color: transparent;
+	background: url("../images/auriculares.jpeg");
+	background-repeat: no-repeat;
+	background-position: 33% 10%;
+	background-attachment: fixed;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	text-align: center;
+}
+
+table{
+	margin-bottom: 20%;
+}
+img{
+	border-radius: 5px;
+
+}
+
+h1{
+	text-shadow: 0 6px  0 rgba(0, 0, 0, 0.15);
+	font-size: 50px;
+	font-family: museo; 
+	opacity: 0.8;
+	color: #1C1C1C;
+	margin-top: -5%;
+}
+
+h2{
+	text-shadow: 0 5px 0 rgba(0, 0, 0, 0.15);
+ 	font-family: museo;
+	opacity: 0.8;
+	color: #1C1C1C;
+	margin-top: -0.5%;
+}
+h3{
+	color: white;
+	font-family: museo;
+	text-shadow: 0 0 0.5em black, 0 0 0.5em black, 0 0 0.5em black;
+}
+.jumbotron{
+	background-color: #A4A4A4;
+	border-radius: 10px;
+	height: 200px;
+}
+.btn-group{
+	margin-top: -15%;
+}
+
+.datos_nombre{
+	font-family: museo;
+	text-shadow: 0 0 0.5em black;
+	text-align: center;
+}
+.imagen_nombre{
+	text-align: center;
+}
+.tituloTablas{
+	text-align: center;
+}
+
+.clase{
+	text-align: center;
+}

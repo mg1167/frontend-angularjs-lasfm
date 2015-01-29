@@ -1,22 +1,214 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>AngularJS App</title>
-
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-
-    <script src="bower_components/angular/angular.js"></script>
-
-    <!-- include source files here... -->
-    <script src="js/script.js"></script>
-
-
-  </head>
-
-  <body ng-app="app">
-
-    <h1>{{ title }}</h1>
-
-  </body>
+<html data-ng-app="angularjs">
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="http://www.masterbeaters.com/wp-content/themes/genesis/images/favicon.ico">
+		<meta name = "viewport" content = "width= device-width, inicial-scale = 1.0">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<title> Frontend Angular JS </title>
+	</head>
+	<body>
+		<div class = "container">
+			<div class= "jumbotron">
+						<div class= "clase">
+							<h1>Frontend Music</h1>
+							<h2>(Angular JS)</h2>
+						</div>
+						<form class="navbar-form" role="search">
+							<div class="input-group add-on">
+								<input class="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" data-ng-model = "buscar">
+								<div class="input-group-btn">
+									<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+								</div>
+							</div>
+						</form>
+		</div>
+						<br/>
+						<div class="row">
+		<div data-ng-controller="lastfm as datosfm">
+			
+				<div class="btn-group" role="group" aria-label="...">
+					<button type="button" class="btn btn-default" data-ng-click="tab=1">Name</button>
+					<button type="button" class="btn btn-default botonesFiltros" data-ng-click="tab=2">Duration</button>
+					<button type="button" class="btn btn-default botonesFiltros" data-ng-click="tab=3">Playcounts</button>
+					<button type="button" class="btn btn-default botonesFiltros" data-ng-click="tab=4">Listeners</button>
+					<button type="button" class="btn btn-default botonesFiltros" data-ng-click="tab=5">Artist</button>
+					<button type="button" class="btn btn-default botonesFiltros" data-ng-click="tab=6">Top Today</button>
+						<br/>
+				</div>
+			
+			<br>
+<!--******************************************NOMBRE API*********************************************************-->
+			<div class="container">
+				<div class="row">
+					<div class="span12">
+						<div class="panel tablas" data-ng-show="tab===1">
+							<h3 class="tituloTablas">NAME</h3>
+							
+							<div class="input-group cuadroBuscar">
+								<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="BUSCAR" data-ng-model="buscar">
+							</div>
+							
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>NAME</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="datonombre in informacion | filter:buscar">
+										<td>{{datonombre.name}}</td>
+										<td data-ng-show="{{datonombre.image[1]}}"><img src="{{datonombre.image[1] | soloUrl}}" alt = "imagen"></td>
+										<td data-ng-show="!{{datonombre.image[1]}}"><img src="images/imagen" alt="imagen"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+<!--***************************************************************************************************************************-->
+						<div class="panel tablas" data-ng-show="tab===2">
+							<h3 class="tituloTablas">DURATION</h3>
+							
+							<div class="input-group cuadroBuscar">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="BUSCAR" data-ng-model="buscar">
+							</div>
+							
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>DURATION</th>
+										<th>NAME</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="datonombre in informacion | filter:buscar">
+										<td>{{datonombre.duration  *1000 | date: 'mm:ss'}}</td>
+										<td>{{datonombre.name}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+<!--***************************************************************************************************************************-->
+						<div class="panel tablas" data-ng-show="tab===3">
+							<h3 class="tituloTablas">PLAYCOUNTS</h3>
+							
+							<div class="input-group cuadroBuscar">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="BUSCAR" data-ng-model="buscar">
+							</div>
+							
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>PLAYCOUNTS</th>
+										<th>NAME</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="datonombre in informacion | filter:buscar">
+										<td>{{datonombre.playcount}}</td>
+										<td>{{datonombre.name}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+<!--************************************************************************************************************************-->
+						<div class="panel tablas" data-ng-show="tab===4">
+						<h3 class="tituloTablas">LISTENERS</h3>
+						
+						<div class="input-group cuadroBuscar">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="BUSCAR" data-ng-model="buscar">
+							</div>
+						
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>LISTENERS</th>
+										<th>NAME</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="datonombre in informacion | filter:buscar">
+										<td>{{datonombre.listeners}}</td>
+										<td>{{datonombre.name}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br/>
+<!--***************************************************************************************************************************-->
+						<div class="panel tablas" data-ng-show="tab===5">
+						<h3 class="tituloTablas">ARTIST</h3>
+						
+						<div class="input-group cuadroBuscar">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="BUSCAR" data-ng-model="buscar">
+							</div>
+						
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>ARTIST</th>
+										<th>NAME</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="datonombre in informacion | filter:buscar">
+										<td>{{datonombre.artist.name}}</td>
+										<td>{{datonombre.name}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<br/>
+<!--***************************************************************************************************************************-->
+						<div class="panel tablas" data-ng-show="tab===6">
+						<h3 class="tituloTablas">ALL</h3>
+						
+						<div class="input-group cuadroBuscar">
+								<span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+								<input type="text" class="form-control" placeholder="BUSCAR" data-ng-model="buscar">
+							</div>
+						
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>IMAGE</th>
+										<th>NAME</th>
+										<th>ARTIST</th>
+										<th>DURATION</th>
+										<th>PLAY-COUNTS</th>
+										<th>LISTENERS</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="datonombre in informacion | filter:buscar" >
+										<td data-ng-show="{{datonombre.image[1]}}"><img src="{{datonombre.image[1] | soloUrl}}" alt = "imagen"></td>
+										<td data-ng-show="!{{datonombre.image[1]}}"><img src="images/imagen" alt = "imagen"></td>
+										<td>{{datonombre.name}}</td>
+										<td>{{datonombre.artist.name}}</td>
+										<td>{{datonombre.duration}}</td>
+										<td>{{datonombre.playcount }}</td>
+										<td>{{datonombre.listeners}}</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
+							<br/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> 
+		<script src= "js/script.js"></script>
+	</body>
 </html>
+<!-- https://github.com/cognits/frontend-angularjs/blob/master/data/2015-1-1-15.json-->
